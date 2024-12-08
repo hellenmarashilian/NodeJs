@@ -1,0 +1,14 @@
+install node.js from website
+create app.js
+Initialize Your Node.js Project: npm init -y
+Install modules: npm install express
+run script to test: node app.js
+
+to make into a docker:
+1. Prepare Your Project
+Ensure your Node.js project directory contains the following:
+	- Application files (e.g., app.js).
+	- Dependencies: Run npm install to generate a node_modules directory.
+	- package.json: This file should already exist if you've initialized your project using npm init.
+2. Create a Dockerfile
+3. Build the Docker Image

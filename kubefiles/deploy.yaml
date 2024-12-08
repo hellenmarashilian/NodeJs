@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: node-app
+  name: node-app
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node-app
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: node-app
+    spec:
+      containers:
+      - env:
+        - name: USER_NAME
+          valueFrom:
+            secretKeyRef:
+              key: USER_NAME
+              name: my-secret
+        image: senceck/node-app:latest
+        imagePullPolicy: IfNotPresent
+        name: node-app
+        ports:
+        - containerPort: 8000
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
