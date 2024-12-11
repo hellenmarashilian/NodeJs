@@ -28,7 +28,7 @@ spec:
             secretKeyRef:
               key: USER_NAME
               name: my-secret
-        image: senceck/node-app:latest
+        image: 192.168.1.157:8083/repository/hellz-docker/node-app:latest
         imagePullPolicy: IfNotPresent
         name: node-app
         ports:
